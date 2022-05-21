@@ -15,7 +15,6 @@ export const AddEdit = ({ user }: Props) => {
   const isAddMode = !user
 
   const router = useRouter()
-  const { id } = router.query
 
   const [showPassword, setShowPassword] = useState(false)
 
