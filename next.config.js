@@ -3,7 +3,7 @@ module.exports = {
         return [
           {
             source: '/test/:path*',
-            destination: 'http://localhost:5000/ethlas-demo/us-central1/api/:path*',
+            destination: 'https://us-central1-ethlas-demo.cloudfunctions.net/api/:path*',
           },
         ]
       },
