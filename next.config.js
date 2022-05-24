@@ -1,13 +1,10 @@
 module.exports = {
-    async rewrites() {
-        return [
-          {
-            source: '/test/:path*',
-            destination: 'https://us-central1-ethlas-demo.cloudfunctions.net/api/:path*',
-          },
-        ]
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
-    env: {
-      apiUrl: 'API_URL',
-    },
+    ]
+  },
 }

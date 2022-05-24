@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react'
+import { BallTriangle } from 'react-loader-spinner'
 import { Link } from '../../components'
 import { UserModel } from '../../models/user'
 import { userService } from '../../services'
 
 export default function Users() {
   const [users, setUsers] = useState<UserModel[]>([])
+  const [isFetching, setIsFetching] = useState(false)
 
   useEffect(() => {
-    userService.getAll().then(res => setUsers(res))
+    setIsFetching(true)
+    userService.getAll().then(res => {
+      setUsers(res)
+      setIsFetching(false)
+    })
   }, [])
 
   function deleteUser(id: string) {
@@ -24,12 +30,12 @@ export default function Users() {
     })
   }
 
-  return (
-    <div>
-      <h1>Users</h1>
-      <Link href="/users/add" className="btn btn-sm btn-success mb-2">
-        Add User
-      </Link>
+  const renderContent = () => {
+    if (isFetching) {
+      return <BallTriangle color="green" height={32} width={32} />
+    }
+
+    return (
       <table className="table table-striped">
         <thead>
           <tr>
@@ -77,6 +83,16 @@ export default function Users() {
           )}
         </tbody>
       </table>
+    )
+  }
+
+  return (
+    <div>
+      <h1>Users</h1>
+      <Link href="/users/add" className="btn btn-sm btn-success mb-2">
+        Add User
+      </Link>
+      {renderContent()}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { apiUrl } from '../env'
 
 enum StatusCode {
   Unauthorized = 401,
@@ -25,7 +26,7 @@ class Http {
 
   initHttp() {
     const http = axios.create({
-      baseURL: 'https://us-central1-ethlas-demo.cloudfunctions.net/api',
+      baseURL: apiUrl,
       headers,
     })
 
