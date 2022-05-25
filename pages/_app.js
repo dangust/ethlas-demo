@@ -1,8 +1,15 @@
 import Head from 'next/head'
+import Router from 'next/router'
+import NProgress from 'nprogress' //nprogress module
+import 'nprogress/nprogress.css'
 import { Alert, Nav } from '../components'
 import '../styles/globals.css'
 
 export default App
+
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 function App({ Component, pageProps }) {
   return (
